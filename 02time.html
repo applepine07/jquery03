@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <h2>filter time</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                <div>
+                    <ol>
+                        <p>ol的p</p>
+                        <p>
+                            <span>
+                                ol>p>span的內容
+                            </span>
+                        </p>
+                        <li class="text-warning">Lorem ipsum dolor sit amet.</li>
+                        <li class="liClass">Lorem ipsum dolor sit amet.</li>
+                        <li class="liClass">Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <button type="button" class="buttonc">變色</button>
+                        <button type="button" class="warning">黃</button>
+                        <button type="button" class="danger">紅</button>
+                        <button type="button" class="buttona">增加</button>
+                        <button type="button" class="buttond">刪除</button>
+                        <button type="button" class="buttony">現在時間</button>
+                    </ol>
+                </div>
+
+            </div>
+            <p>外部的p</p>
+        </div>
+
+    </div>
+
+
+    <!-- 先載入 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+        crossorigin="anonymous"></script>
+    <!-- 先載入 END-->
+
+    <script>
+        $(document).ready(function () {
+
+            // 簡化
+            // 把在「增加」、「時間」按鈕相同的三行拉出
+            function clonelifun(thisobj) {
+                thisSibling = $(thisobj).siblings().filter('li').last();
+                clone = thisSibling.clone();
+                thisSibling.after(clone);
+            }
+
+            $('.buttonc').on('click', function () {
+                $(this).siblings().filter('li').toggleClass('text-primary');
+            });
+
+            $('.warning').on('click', function () {
+                $(this).siblings().filter('li').attr('class', '');
+                $(this).siblings().filter('li').addClass('text-warning');
+            });
+            $('.danger').on('click', function () {
+                $(this).siblings().filter('li').attr('class', '');
+                $(this).siblings().filter('li').addClass('text-danger');
+            });
+
+
+
+            $('.buttona').on('click', function () {
+                // thisSibling=$(this).siblings().filter('li').last();
+                // clone = thisSibling.clone()
+                // thisSibling.after(clone);
+                clonelifun($(this));
+                // $(this)是一個object
+                console.log("$(this).typeof", typeof ($(this)));
+            });
+            $('.buttond').on('click', function () {
+                $(this).siblings().filter('li').last().remove();
+            });
+            $('.buttony').on('click', function () {
+
+                clonelifun($(this));
+
+                // thisSibling=$(this).siblings().filter('li').last();
+                // 複製最後一行
+                // clone = thisSibling.clone()
+                // 加到最後一行以下
+                // thisSibling.after(clone);
+
+                // 抓現在時間
+                timeData = new Date();
+                // 將最後一行的li內容置換為現在時間
+                $(this).siblings().filter('li').last().text(timeData);
+            });
+
+        })
+    </script>
+</body>
+
+</html>

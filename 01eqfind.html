@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <h2>find empty eq</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <h3>h3 title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, consectetur.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, consectetur.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, consectetur.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, consectetur.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, consectetur.</p>
+                </div>
+                <div>
+                    <ol>
+                        <p>ol的p</p>
+                        <p>
+                            <span>
+                                ol>p>span的內容
+                            </span>
+                        </p>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li class="liClass">Lorem ipsum dolor sit amet.</li>
+                        <li class="liClass">Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                    </ol>
+                </div>
+                <div>
+                    <ol>
+                        <p>ol的p</p>
+                        <p>
+                            <span>
+                                ol>p>span的內容
+                            </span>
+                        </p>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li class="liClass">Lorem ipsum dolor sit amet.</li>
+                        <li class="liClass">Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button type="button">click1</button>
+                <button type="button">click2</button>
+                <button type="button" id="pChangeBtn">pChangeBtn</button>
+                <button type="button" id="olspanchange">第4顆</button>
+                <button type="button" id="firstdivli">firstdivli</button>
+            </div>
+        </div>
+        <p>外部的p</p>
+    </div>
+
+
+
+    <!-- 先載入 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+        crossorigin="anonymous"></script>
+    <!-- 先載入 END-->
+
+    <script>
+        $(document).ready(function () {
+            // 其實也可這樣寫$('button').click()
+            $('button').on('click', function () {
+                // hide不是真正不見，f12還是看得到，remove才是，而empty是內容(包含其內標籤)消掉
+                // $('p').hide();
+                $('p').first().empty();
+            })
+
+            // 用太多eq也許可讀性會降低
+            $('button').eq(1).click(function () {
+                $('p').first().text('123456');
+            })
+
+
+            // $('#olspanchange').click(function () {
+            //     $('ol p span').css('color','red');
+            // })
+            // toggle點第2次就會remove
+            $('#olspanchange').click(function () {
+                $('ol').find('p').find('span').toggleClass('text-danger');
+            })
+
+            // div所有下層中的p，中間夾一層ol也還是會被選到
+            $('#pChangeBtn').click(function () {
+                $('div').find('p').css('background-color', "lightgray");
+            })
+
+
+            $('#firstdivli').click(function () {
+                // 第一組ol下的li的.liClass會變黃色字
+                $('ol').find('li').first().toggleClass('text-warning');
+            })
+
+            // $('#firstdivli').click(function () {
+            //     $('div.col-12 div').first().next().find('li.liClass').css('background-color', "lightgray");
+            // })
+            // $('#firstdivli').click(function () {
+            //     $('div.col-12 div').eq(1).find('li.liClass').css('background-color', "lightgray");
+            // })
+
+            // iddiv下層的p
+            // $('#pChangeBtn').click(function(){
+            //     $('#div p').addClass('text-primary');
+            // })
+
+            // div標籤下層class為classp的
+            // $('#pChangeBtn').click(function(){
+            //     $('div .classp').addClass('text-primary');
+            // })
+
+            // p中class為classp的
+            // $('#pChangeBtn').click(function(){
+            //     $('p.classp').addClass('text-primary');
+            // })
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>
